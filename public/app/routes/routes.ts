@@ -76,6 +76,17 @@ export function setupAngularRoutes($routeProvider: route.IRouteProvider, $locati
         component: importDashboardPage,
       },
     })
+    .when('/log', {
+      template: '<react-container />',
+      //@ts-ignore
+      pageClass: 'page-dashboard',
+      routeInfo: DashboardRouteInfo.New,
+      reloadOnSearch: false,
+      resolve: {
+        roles: () => (contextSrv.hasEditPermissionInFolders ? [contextSrv.user.orgRole] : ['Admin']),
+        component: importDashboardPage,
+      },
+    })
     .when('/d-solo/:uid/:slug', {
       template: '<react-container />',
       //@ts-ignore
